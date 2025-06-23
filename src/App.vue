@@ -56,7 +56,7 @@ export default {
 <style lang="scss">
 /* 每个页面公共css */
 @use './uni.scss';
-@import '@tuniao/tn-style/dist/uniapp/index.css';
+// @import '@tuniao/tn-style/dist/uniapp/index.css';
 
 /* 全局重置样式 */
 view, text, button, input, textarea, image, scroll-view {
@@ -129,68 +129,5 @@ page {
 
 .text-center {
   text-align: center;
-}
-
-/* 间距工具类 */
-.mt-10 { margin-top: 10rpx; }
-.mt-20 { margin-top: 20rpx; }
-.mt-30 { margin-top: 30rpx; }
-
-.mb-10 { margin-bottom: 10rpx; }
-.mb-20 { margin-bottom: 20rpx; }
-.mb-30 { margin-bottom: 30rpx; }
-
-.p-10 { padding: 10rpx; }
-.p-20 { padding: 20rpx; }
-.p-30 { padding: 30rpx; }
-
-/* 弹性布局 */
-.flex {
-  display: flex;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.flex-1 {
-  flex: 1;
-}
-
-/* 动画效果 */
-.fade-in {
-  animation: fadeIn 0.3s ease-in;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20rpx);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.slide-up {
-  animation: slideUp 0.3s ease-out;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
 }
 </style>

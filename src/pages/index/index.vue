@@ -1,4 +1,5 @@
 <template>
+  <view class="flex flex-col items-center bg-blue-500">123123123</view>
   <view class="container">
     <!-- 卡盒展示区 -->
     <scroll-view class="card-boxes-container" scroll-x>

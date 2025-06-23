@@ -66,5 +66,18 @@
 				"text": "我的"
 			}
 		]
-	}
+	},
+	"subPackages": [
+		{
+			"root": "pages/auth",
+			"pages": [
+				{
+          "path": "login",
+          "style": {
+            "navigationBarTitleText": "登录"
+          }
+        }
+			]
+		}
+	]
 }
