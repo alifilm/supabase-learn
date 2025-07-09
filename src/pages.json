@@ -37,14 +37,13 @@
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "学习卡片",
+		"navigationBarTitleText": "孔明",
 		"navigationBarBackgroundColor": "#ffffff",
 		"backgroundColor": "#f5f5f5"
 	},
 	"easycom": {
 		"custom": {
-			"^tn-(.*)-(item|group)$": "@tuniao/tnui-vue3-uniapp/components/$1/src/$1-$2.vue",
-			"^tn-(.*)": "@tuniao/tnui-vue3-uniapp/components/$1/src/$1.vue"
+			"^nut-(.*)": "nutui-uniapp/components/$1/$1.vue"
 		}
 	},
 	"tabBar": {
@@ -74,7 +73,7 @@
 				{
           "path": "login",
           "style": {
-            "navigationBarTitleText": "登录"
+            "navigationStyle": "custom"
           }
         }
 			]

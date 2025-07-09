@@ -1,0 +1,132 @@
+// 弹性布局
+@mixin flex($direction: row, $justify: flex-start, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// 文本省略
+@mixin text-ellipsis($lines: 1) {
+  @if $lines ==1 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+  }
+
+  @else {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: $lines;
+      overflow: hidden;
+  }
+}
+
+// 定位
+@mixin position($position: absolute, $top: 0, $right: 0, $bottom: 0, $left: 0) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+// 绝对居中
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 清除浮动
+@mixin clearfix {
+  &::after {
+      content: '';
+      display: table;
+      clear: both;
+  }
+}
+
+// 边框圆角
+@mixin border-radius($radius: 10rpx) {
+  border-radius: $radius;
+}
+
+// 阴影
+@mixin box-shadow($x: 0, $y: 2rpx, $blur: 12rpx, $color: rgba(0, 0, 0, 0.1)) {
+  box-shadow: $x $y $blur $color;
+}
+
+// 渐变背景
+@mixin gradient($direction: to right, $start-color: #fff, $end-color: #000) {
+  background: linear-gradient($direction, $start-color, $end-color);
+}
+
+// 响应式字体
+@mixin font-size($size) {
+  font-size: $size;
+
+  [data-dpr="2"] & {
+      font-size: $size * 2;
+  }
+
+  [data-dpr="3"] & {
+      font-size: $size * 3;
+  }
+}
+
+// 1px 边框
+@mixin border-1px($color: $uni-border-color, $direction: all) {
+  position: relative;
+
+  &::after {
+      content: '';
+      position: absolute;
+      transform-origin: 0 0;
+
+      @if $direction ==all {
+          border: 1px solid $color;
+          left: 0;
+          top: 0;
+          width: 200%;
+          height: 200%;
+          transform: scale(0.5);
+      }
+
+      @else {
+          background-color: $color;
+
+          @if $direction ==top {
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 1px;
+              transform: scaleY(0.5);
+          }
+
+          @else if $direction ==bottom {
+              left: 0;
+              bottom: 0;
+              width: 100%;
+              height: 1px;
+              transform: scaleY(0.5);
+          }
+          @else if $direction == left {
+              left: 0;
+              bottom: 0;
+              width: 1px;
+              height: 100%;
+              transform: scaleX(0.5);
+          }
+          
+          @else {
+              right: 0;
+              bottom: 0;
+              width: 1px;
+              height: 100%;
+              transform: scaleX(0.5);
+          }
+      }
+  }
+}

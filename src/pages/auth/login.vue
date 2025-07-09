@@ -1,38 +1,41 @@
 <template>
-  <view class="flex flex-col items-center justify-between min-h-screen px-16rpx py-24rpx bg-gray-100">
-    <!-- Logo区域 -->
-    <view class="flex flex-col items-center mt-32rpx animate-fade-in">
-      <image src="/static/logo.png" class="w-100rpx h-100rpx mb-16rpx" mode="aspectFit"></image>
-      <text class="text-32rpx font-bold text-gray-800 mb-8rpx">学习卡片</text>
-      <text class="text-20rpx text-gray-500 text-center">专为学习打造的智能卡片应用</text>
+  <nut-navbar title="" fixed safe-area-inset-top customColor="#323232"></nut-navbar>
+  <view class="loginPage flex-column-center">
+    <text class="title">欢迎使用 孔明</text>
+    <text class="desc">专为学习打造的智能卡片应用</text>
+
+    <view class="logo-bg">
+      孔明
     </view>
-    
-    <!-- 登录按钮区域 -->
-    <view class="w-full mt-40rpx animate-fade-in">
-      <button
-        class="w-full h-56rpx rounded-full flex items-center justify-center mb-16rpx bg-blue-500 text-white border-none text-24rpx font-medium shadow-sm transition active:scale-98"
-        @click="handleQuickLogin"
-      >
-        <text>一键登录</text>
-      </button>
-      <button
-        class="w-full h-56rpx rounded-full flex items-center justify-center mb-16rpx bg-transparent text-blue-500 border-2 border-blue-500 text-24rpx font-medium shadow-sm transition active:scale-98"
-        @click="handlePhoneLogin"
-      >
-        <text>手机号登录</text>
-      </button>
-      <view class="flex flex-row items-center justify-center mt-8rpx">
-        <checkbox :checked="agreePolicy" @click="agreePolicy = !agreePolicy" color="#007aff" style="transform:scale(0.8)" />
-        <text class="text-16rpx text-gray-400 ml-4rpx">登录即表示同意</text>
-        <text class="text-16rpx text-blue-500 mx-2rpx" @click="viewUserAgreement">《用户协议》</text>
-        <text class="text-16rpx text-gray-400">和</text>
-        <text class="text-16rpx text-blue-500 ml-2rpx" @click="viewPrivacyPolicy">《隐私政策》</text>
+
+    <!-- Logo区域 -->
+    <view class="loginPage-logo">
+      <image src="/static/logo.png" mode="aspectFit" class="logo"></image>
+    </view>
+
+    <!-- 卡片区域 -->
+    <view class="loginPage-card">
+      <view class="content">
+        <nut-button type="primary" size="large" class="btn btn-login" @tap="handleQuickLogin">
+          一键登录
+        </nut-button>
+        <nut-button type="default" size="large" class="btn btn-phone" @tap="handlePhoneLogin">
+          手机号登录
+        </nut-button>
+        <view class="policy">
+          <!-- <checkbox :checked="agreePolicy" @change="agreePolicy = !agreePolicy"/> -->
+          <tn-checkbox v-model="agreePolicy" checked-shape="circle" />
+          <text class="policy-text">登录即表示同意</text>
+          <text class="policy-link" @tap="viewUserAgreement">《用户协议》</text>
+          <text class="policy-text">和</text>
+          <text class="policy-link" @tap="viewPrivacyPolicy">《隐私政策》</text>
+        </view>
       </view>
     </view>
-    
+
     <!-- 底部信息 -->
-    <view class="mt-32rpx pb-8rpx">
-      <text class="text-14rpx text-gray-400">© 2024 学习卡片 版权所有</text>
+    <view class="loginPage-footer">
+      <text class="footer-text">© 2024 学习卡片 版权所有</text>
     </view>
   </view>
 </template>
@@ -115,5 +118,54 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.loginPage {
+  height: 80vh;
+  padding: 0 30rpx;
+
+  .title {
+    padding: 20rpx 0;
+    font-size: 36rpx;
+  }
+
+  .logo-bg {
+    font-size: 80rpx;
+    color: #aaa;
+    transform: translateY(45deg);
+  }
+
+  &-logo {
+    padding: 80rpx 0 50rpx;
+    .logo {
+      width: 280rpx;
+      height: 280rpx;
+      border-radius: 12rpx;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  &-card {
+    flex: 1;
+    padding: 30rpx 0;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+
+      button {
+        margin: 0 0 20rpx;
+      }
+    }
+
+    .policy {
+      padding: 0 0 20rpx;
+      font-size: 24rpx;
+    }
+  }
+
+  &-footer {
+    text-align: center;
+  }
+}
 </style>

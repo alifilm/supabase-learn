@@ -55,17 +55,24 @@ export default {
 
 <style lang="scss">
 /* 每个页面公共css */
-@use './uni.scss';
-// @import '@tuniao/tn-style/dist/uniapp/index.css';
+@import './uni.scss';
+@import '@/static/css/base.scss';
+@import 'nutui-uniapp/styles/mixins/index.scss';
+@import 'nutui-uniapp/styles/index.scss';
 
-/* 全局重置样式 */
-view, text, button, input, textarea, image, scroll-view {
-  box-sizing: border-box;
+:root,
+page {
+  --nut-button-primary-background-color: #a1d0d5;
 }
 
 page {
   background-color: #f5f5f5;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+button[plain] {
+  border-width: 1rpx;
+  border-color: $uni-text-color-grey;
 }
 
 /* 通用按钮样式 */
