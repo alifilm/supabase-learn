@@ -40,82 +40,29 @@
   </view>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      agreePolicy: true
-    }
-  },
-  methods: {
-    // 一键登录
-    handleQuickLogin() {
-      if (!this.agreePolicy) {
-        this.showAgreementTip()
-        return
-      }
-      
-      // 这里实现一键登录逻辑
-      uni.showLoading({
-        title: '登录中...'
-      })
-      
-      // 模拟登录过程
-      setTimeout(() => {
-        uni.hideLoading()
-        this.loginSuccess()
-      }, 1500)
-    },
-    
-    // 手机号登录
-    handlePhoneLogin() {
-      if (!this.agreePolicy) {
-        this.showAgreementTip()
-        return
-      }
-      
-      // 跳转到手机号登录页面
-      uni.navigateTo({
-        url: '/pages/auth/phone_login'
-      })
-    },
-    
-    // 查看用户协议
-    viewUserAgreement() {
-      uni.showToast({
-        title: '用户协议功能开发中',
-        icon: 'none'
-      })
-    },
-    
-    // 查看隐私政策
-    viewPrivacyPolicy() {
-      uni.showToast({
-        title: '隐私政策功能开发中',
-        icon: 'none'
-      })
-    },
-    
-    // 提示用户同意协议
-    showAgreementTip() {
-      uni.showToast({
-        title: '请先同意用户协议和隐私政策',
-        icon: 'none'
-      })
-    },
-    
-    // 登录成功处理
-    loginSuccess() {
-      // 保存登录状态
-      uni.setStorageSync('isLoggedIn', true)
-      
-      // 跳转到首页
-      uni.switchTab({
-        url: '/pages/index/index'
-      })
-    }
+<script setup>
+import { ref } from "vue"
+
+const agreePolicy = ref(false)
+
+const handleQuickLogin = () => {
+  if (!this.agreePolicy.value) {
+    this.showAgreementTip()
+    return
   }
+  
+  // 这里实现一键登录逻辑
+  uni.showLoading({
+    title: '登录中...'
+  })
+  
+  // 模拟登录过程
+  setTimeout(() => {
+    uni.hideLoading()
+    this.loginSuccess()
+  }, 1500)
 }
+
 </script>
 
 <style lang="scss">
