@@ -56,7 +56,7 @@
     "@tuniao/tn-icon": "^1.11.0",
     "@tuniao/tn-style": "^1.0.20",
     "@tuniao/tnui-vue3-uniapp": "^1.0.23",
-    "nutui-uniapp": "^1.8.4",
+    "nutui-uniapp": "^1.9.0",
     "sass": "^1.77.8",
     "supabase-wechat-stable-v2": "^2.2.0",
     "vue": "^3.4.21",

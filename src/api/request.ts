@@ -23,12 +23,12 @@ const request = (options = {
         });
       }
       uni.request({
-        url: process.env.BASE_URL + options.url,
+        url: import.meta.env.VITE_BASE_URL + options.url,
         method: options.method || 'GET',
         data: options.data,
         header: {
           'content-type': 'application/json',
-          'Authorization': uni.getStorageSync('appBearer') ? 'appBearer ' + uni.getStorageSync('appBearer') : '',
+          // 'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
           ...options.header
         },
         success: (res) => {
@@ -77,3 +77,18 @@ const request = (options = {
         break;
     }
   }
+
+export default {
+  get: (url, data, options = {}) => request({
+    url,
+    method: 'GET',
+    data,
+    ...options
+  }),
+  post: (url, data, options = {}) => request({
+    url,
+    method: 'POST',
+    data,
+    ...options
+  }),
+}

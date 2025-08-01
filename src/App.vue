@@ -1,55 +1,7 @@
 <script>
 export default {
   onLaunch: function () {
-    console.log('App Launch')
-    // 初始化示例数据
-    this.initSampleData()
   },
-  onShow: function () {
-    console.log('App Show')
-  },
-  onHide: function () {
-    console.log('App Hide')
-  },
-  methods: {
-    // 初始化示例数据
-    initSampleData() {
-      const existingCards = uni.getStorageSync('study_cards')
-      if (!existingCards || existingCards.length === 0) {
-        const sampleCards = [
-          {
-            id: '1',
-            title: '线性代数基础概念',
-            content: '向量空间是线性代数的核心概念，它是由向量组成的集合，满足加法和数量乘法的运算规则。理解向量空间的性质对于掌握线性代数至关重要。',
-            category: 'postgraduate',
-            reviewDate: '2024-02-15',
-            createTime: Date.now() - 86400000,
-            updateTime: Date.now() - 86400000
-          },
-          {
-            id: '2',
-            title: 'Serendipity',
-            content: '意外发现有价值事物的能力；机缘巧合',
-            category: 'english',
-            phonetic: '/ˌserənˈdɪpəti/',
-            example: 'It was pure serendipity that led to this amazing discovery.',
-            createTime: Date.now() - 172800000,
-            updateTime: Date.now() - 172800000
-          },
-          {
-            id: '3',
-            title: '公务员考试报名条件',
-            content: '1. 具有中华人民共和国国籍\n2. 年龄一般为18周岁以上、35周岁以下\n3. 拥护中华人民共和国宪法\n4. 具有良好的品行\n5. 具有正常履行职责的身体条件\n6. 具有符合职位要求的工作能力\n7. 具有大学专科及以上文化程度',
-            category: 'exam',
-            examType: '政策信息',
-            createTime: Date.now() - 259200000,
-            updateTime: Date.now() - 259200000
-          }
-        ]
-        uni.setStorageSync('study_cards', sampleCards)
-      }
-    }
-  }
 }
 </script>
 

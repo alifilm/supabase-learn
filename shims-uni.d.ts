@@ -1,5 +1,5 @@
 /// <reference types='@dcloudio/types' />
-/// <reference types='@tuniao/tnui-vue3-uniapp/global.d.ts' />
+/// <reference types="vite/client" />
 import 'vue'
 
 declare module '@vue/runtime-core' {

@@ -61,7 +61,7 @@
 </template>
 
 <script setup>
-import { useLoginStatus } from '@/hook/auth.js'
+import { useLoginStatus } from '@/hook/auth.ts'
 
 const { isLogin } = useLoginStatus()
 const userInfo = ref({})

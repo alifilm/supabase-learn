@@ -5,7 +5,6 @@
     <text class="desc">专为学习打造的智能卡片应用</text>
 
     <view class="logo-bg">
-      孔明
     </view>
 
     <!-- Logo区域 -->
@@ -42,12 +41,18 @@
 
 <script setup>
 import { ref } from "vue"
+import { userGetOpenId, userLogin } from '@/hook/auth.ts'
 
-const agreePolicy = ref(false)
+const agreePolicy = ref(true)
+const { getOpenId } = userGetOpenId()
+const { loginByOpenId } = userLogin()
 
-const handleQuickLogin = () => {
-  if (!this.agreePolicy.value) {
-    this.showAgreementTip()
+const handleQuickLogin = async() => {
+  if (!agreePolicy.value) {
+    uni.showToast({
+      icon: "none",
+      title: "未勾选隐私协议"
+    })
     return
   }
   
@@ -56,11 +61,8 @@ const handleQuickLogin = () => {
     title: '登录中...'
   })
   
-  // 模拟登录过程
-  setTimeout(() => {
-    uni.hideLoading()
-    this.loginSuccess()
-  }, 1500)
+  const { openid } = await getOpenId()
+  loginByOpenId({ openid })
 }
 
 </script>
