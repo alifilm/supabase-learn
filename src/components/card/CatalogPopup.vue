@@ -1,25 +1,42 @@
 <script setup>
 import { computed, ref } from 'vue'
+const dialogVisible = ref(false)
 const props = defineProps({
   show: {
     type: Boolean,
     default: false
   },
-  list: {
+  currentIdx: {
+    type: Number,
+    default: 0
+  },
+  catelogList: {
     type: Array,
     default: () => []
   }
 })
-const emit = defineEmits(['update:show'])
-const cateList = computed(() => {
+const emit = defineEmits(['update:show', 'popupItemClick'])
+const list = computed(() => {
   return [
-    {
-      name: '默认目录',
-      id: 1
-    },
-    ...props.list
+    // {
+    //   name: '默认目录',
+    //   id: 1
+    // },
+    ...props.catelogList
   ]
 })
+
+const handlePopupItemClick = (index) => {
+  emit('popupItemClick', index)
+}
+
+const handleClose = () => {
+  emit('update:show', false)
+}
+
+const handleDialogShow = () => {
+  dialogVisible.value = true
+}
 </script>
 
 <template>
@@ -34,13 +51,13 @@ const cateList = computed(() => {
       <view class="head flex">
         <view class="title">选择目录</view>
         <view class="flex1"></view>
-        <view class="subTitle">新建目录</view>
+        <view class="subTitle" @click="handleDialogShow">新建目录</view>
         <view class="close" @click="handleClose">关闭</view>
       </view>
       <view class="list">
-        <view v-for="(item, index) in cateList" :key="item.id" class="listItem flex active">
+        <view v-for="(item, index) in list" :key="item.id" :class="`listItem flex ${currentIdx === index ? 'active' : ''}`" @click="handlePopupItemClick(index)">
           <image
-            src="@/static/image/card/catalog.svg"
+            :src="`../../static/image/card/catalog${currentIdx === index ? '_active.svg' : '.svg'}`"
             class="iconL"
             mode="scaleToFill"
           />
@@ -51,6 +68,7 @@ const cateList = computed(() => {
       </view>
     </view>
   </nut-popup>
+  <nut-dialog title="基础弹框" content="这是基础弹框。" v-model:visible="dialogVisible" @cancel="onCancel" @ok="onOk" />
 </template>
 
 <style lang="scss" scoped>

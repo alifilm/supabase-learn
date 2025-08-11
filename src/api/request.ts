@@ -22,13 +22,15 @@ const request = (options = {
           mask: true
         });
       }
+      const token = uni.getStorageSync('access_token')
+      console.log('token-token', token)
       uni.request({
         url: import.meta.env.VITE_BASE_URL + options.url,
         method: options.method || 'GET',
         data: options.data,
         header: {
           'content-type': 'application/json',
-          // 'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Authorization': token ? `Bearer ${token}` : `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
           ...options.header
         },
         success: (res) => {

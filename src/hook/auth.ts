@@ -30,6 +30,7 @@ export const userGetOpenId = () => {
 export const userLogin = () => {
   const loginByOpenId = async(data) => {
     const res = await login.createUser(data)
+    uni.setStorageSync('access_token', res.access_token)
     return res
   }
 

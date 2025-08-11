@@ -6,6 +6,6 @@ export default {
   },
 
   createUser: function(data) {
-    return request.post('/functions/v1/login-by-openid', data)
+    return request.post('/functions/v1/create-openid-user', data)
   }
 }

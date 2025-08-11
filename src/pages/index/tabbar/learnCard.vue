@@ -14,18 +14,22 @@
         v-else
         @addCard="handleAddCard"/>
     </view>
-    <Catalog v-model:show="catelogShow"/>
+    <CatelogPopup 
+      v-model:show="catelogShow" 
+      :currentIdx="catelogIdx"
+      :catelogList="catelogList"
+      @popupItemClick="handleCatelogItemClick"/>
   </view>
 </template>
 
 <script setup>
 import CardNoData from '@/components/card/CardNoData.vue'
-import Catalog from '@/components/card/Catalog.vue'
+import CatelogPopup from '@/components/card/CatalogPopup.vue'
 import { ref, inject, onBeforeMount } from 'vue'
 
 const $api = inject('$api')
 const { cardList } = useLearnCard()
-const { catelogShow } = useCatelogPopup()
+const { catelogShow, catelogIdx, catelogList, handleCatelogItemClick } = useCatelogPopup()
 const { handleAddCard } = useNoData()
 
 // 无数据的hook
@@ -42,11 +46,32 @@ function useNoData() {
 // 目录popup的hook
 function useCatelogPopup() {
   const catelogShow = ref(false)
+  const catelogIdx = ref(0)
+  const catelogList = ref([])
+
+  const handleCatelogItemClick = (idx) => {
+    catelogIdx.value = idx
+  }
+
+  const getCatelogList = async() => {
+    const res = await $api.learn.getCardCollection()
+    if (res.status === 200) {
+      catelogList.value = res.data      
+    }
+  }
+
+  onBeforeMount(() => {
+    getCatelogList()
+  })
 
   return {
-    catelogShow
+    catelogShow,
+    catelogIdx,
+    catelogList,
+    handleCatelogItemClick,
   }
 }
+
 function useLearnCard() {
   const cardList = ref([])
 

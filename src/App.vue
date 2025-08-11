@@ -14,7 +14,8 @@ export default {
 
 :root,
 page {
-  --nut-button-primary-background-color: #a1d0d5;
+  --nut-button-primary-background-color: #4f46e5;
+  --nut-button-primary-border-color: #4f46e5;
 }
 
 page {

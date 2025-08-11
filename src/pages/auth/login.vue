@@ -62,7 +62,9 @@ const handleQuickLogin = async() => {
   })
   
   const { openid } = await getOpenId()
-  loginByOpenId({ openid })
+  if (openid) {
+    loginByOpenId({ openid })
+  }
 }
 
 </script>
